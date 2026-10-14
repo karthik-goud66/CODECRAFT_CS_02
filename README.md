@@ -80,11 +80,4 @@ Follow the instructions displayed by the program to select an image and perform 
 - Practiced implementing a reversible encryption technique.
 - Explored basic cybersecurity and data confidentiality concepts.
 
-## ⚠️ Disclaimer
-This project is intended for educational purposes only. Simple pixel manipulation is not secure enough for protecting sensitive images in real-world applications.
 
-## 👩‍💻 Author
-**Your Name**
-
-## 📄 License
-This project is available for educational and learning purposes.
