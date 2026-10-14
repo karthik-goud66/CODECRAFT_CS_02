@@ -1,0 +1,56 @@
+from PIL import Image
+import os
+
+def encrypt_image(input_path, output_path, key):
+    image = Image.open(input_path).convert("RGB")
+    pixels = image.load()
+
+    for x in range(image.width):
+        for y in range(image.height):
+            r, g, b = pixels[x, y]
+            pixels[x, y] = (
+                (r + key) % 256,
+                (g + key) % 256,
+                (b + key) % 256
+            )
+
+    image.save(output_path)
+    print("Image encrypted successfully:", output_path)
+
+
+def decrypt_image(input_path, output_path, key):
+    image = Image.open(input_path).convert("RGB")
+    pixels = image.load()
+
+    for x in range(image.width):
+        for y in range(image.height):
+            r, g, b = pixels[x, y]
+            pixels[x, y] = (
+                (r - key) % 256,
+                (g - key) % 256,
+                (b - key) % 256
+            )
+
+    image.save(output_path)
+    print("Image decrypted successfully:", output_path)
+
+
+print("=== Image Encryption Tool ===")
+print("1. Encrypt Image")
+print("2. Decrypt Image")
+
+choice = input("Choose an option (1 or 2): ")
+input_path = input("Enter image file path: ")
+output_path = input("Enter output image path: ")
+key = int(input("Enter key (1-255): "))
+
+if not 1 <= key <= 255:
+    print("Key must be between 1 and 255.")
+elif not os.path.isfile(input_path):
+    print("Error: Input image not found.")
+elif choice == "1":
+    encrypt_image(input_path, output_path, key)
+elif choice == "2":
+    decrypt_image(input_path, output_path, key)
+else:
+    print("Invalid choice. Select 1 or 2.")
